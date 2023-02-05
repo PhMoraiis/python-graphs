@@ -1,47 +1,33 @@
 import pandas as pd
-import plotly.graph_objects as go
+import plotly.express as px
 
-# Importando os dados dos arquivos CSV's
-
-df1 = pd.read_csv('C:\ProjetosVSCode\Python\Test\data\Ano2015.csv', sep=',')
-df2 = pd.read_csv('C:\ProjetosVSCode\Python\Test\data\Ano2016.csv', sep=',')
-df3 = pd.read_csv('C:\ProjetosVSCode\Python\Test\data\Ano2017.csv', sep=',')
-df4 = pd.read_csv('C:\ProjetosVSCode\Python\Test\data\Ano2018.csv', sep=',')
-df5 = pd.read_csv('C:\ProjetosVSCode\Python\Test\data\Ano2019.csv', sep=',')
-
-df1['Year'] = '2015'
-df2['Year'] = '2016'
-df3['Year'] = '2017'
-df4['Year'] = '2018'
-df5['Year'] = '2019'
-
-df = pd.concat([df1, df2, df3, df4, df5])
-
-# Filtrando os dados do Brasil
+df=pd.read_csv("C:\ProjetosVSCode\Python\Test\data\AllSheets.csv", sep=',')
+# Importando os dados do arquivo CSV
 
 valores_br = []
 for i, row in df.iterrows():
     if row['Country'] == 'Brazil':
         valores_br.append(row)
+# Realiza o filtro da linha do Brasil em cada ano, e adiciona em uma lista; O método iterrows() retorna o resultado do filtro da linha do Brasil, pegando todos os valores do Brasil independente das colunas, e adiciona em uma lista. Depois adiciona essa lista em outra lista, que será usada para criar o gráfico que é a "row".
 
-# Agora pegando o valor do Happiness Rank de cada ano
-
-happiness_rank = []
+rank=[]
 for row in valores_br:
-    happiness_rank.append(row['Happiness Rank'])
+  rank.append(row['Happiness Rank']) 
+# Agora pegando o valor do Happiness Rank da lista que foi iterada com todos os valores da linha do Brasil, filtra pela a coluna Happiness Rank e adiciona em uma lista chamada "rank".
 
-# Criando um novo dataframe com os dados apenas do Brasil contendo o ano e o Happiness Rank
+dados_x= ['2015', '2016', '2017', '2018', '2019']
+# Cria uma lista com os anos que serão usados no eixo X do gráfico.
 
-df_br = []
-for i in range(len(valores_br)):
-    df_br.append([valores_br[i]['Year'], happiness_rank[i]])
+dados_y=[rank]
+# Cria uma lista com os valores do rank que será usada no eixo Y do gráfico.
 
+fig = px.line(x=dados_x, y=dados_y, title='Variação da posição do Brasil no ranking da felicidade')
+fig.update_traces(hovertemplate='<b>Ano: %{x}</b><br><b>Posição: %{y}</b>',hoverlabel=dict(bgcolor="white", font_size=16, font_family="Rockwell"))
+fig.update_traces(name='Variação da Posição', mode='lines+markers', line=dict(color='#B0D236', width=3), marker=dict(color='#69BF54', size=10))
+fig.update_yaxes(title='Posições no ranking')
+fig.update_xaxes(title='Anos')
+fig.show()
 # Criando o gráfico
 
-fig = go.Figure(data=go.Scatter(x=[row[0] for row in df_br], y=[row[1] for row in df_br]))
-fig.update_layout(title='Happiness Rank do Brasil', xaxis_title='Ano', yaxis_title='Happiness Rank')
-fig.show()
-
-# Criando o arquivo HTML
-
 fig.write_html('C:\ProjetosVSCode\Python\Test\happiness_rank_brasil.html')
+# Criando o arquivo HTML

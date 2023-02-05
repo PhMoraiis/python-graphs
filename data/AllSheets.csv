@@ -1,5 +1,5 @@
-Country,Happiness Rank,Score
-Switzerland,1,7.587
+Country,Happiness Rank,Score,Year
+Switzerland,1,7.587,2015
 Iceland,2,7.561
 Denmark,3,7.527
 Norway,4,7.522
@@ -158,8 +158,8 @@ Syria,156,3.006
 Burundi,157,2.905
 Togo,158,2.839
 ,,
-Country,Happiness Rank,Score
-Denmark,1,7.526
+Country,Happiness Rank,Score,Year
+Denmark,1,7.526,2016
 Switzerland,2,7.509
 Iceland,3,7.501
 Norway,4,7.498
@@ -317,8 +317,8 @@ Togo,155,3.303
 Syria,156,3.069
 Burundi,157,2.905
 ,,
-Country,Happiness Rank,Score
-Norway,1,753.700.017.929.077
+Country,Happiness Rank,Score,Year
+Norway,1,753.700.017.929.077,2017
 Denmark,2,752.199.983.596.802
 Iceland,3,750.400.018.692.017
 Switzerland,4,749.399.995.803.833
@@ -474,8 +474,8 @@ Tanzania,153,334.899.997.711.182
 Burundi,154,290.499.997.138.977
 Central African Republic,155,269.300.007.820.129
 ,,
-Country,Happiness Rank,Score
-Finland,1,7.632
+Country,Happiness Rank,Score,Year
+Finland,1,7.632,2018
 Norway,2,7.594
 Denmark,3,7.555
 Iceland,4,7.495
@@ -632,8 +632,8 @@ South Sudan,154,3.254
 Central African Republic,155,3.083
 Burundi,156,2.905
 ,,
-Country,Happiness Rank,Score
-Finland,1,7.769
+Country,Happiness Rank,Score,Year
+Finland,1,7.769,2019
 Denmark,2,7.600
 Norway,3,7.554
 Iceland,4,7.494
