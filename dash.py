@@ -10,9 +10,19 @@ df=pd.read_csv("C:\ProjetosVSCode\Python\Test\data\AllSheets.csv", sep=',')
 # Inicializa o dashboard
 app = dash.Dash(__name__, external_stylesheets=['https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap'])
 
-# Filtra os dados para usar no dropdown
-df = df[df["Country"].notnull()]
-optionsCountry = [{"label": pais, "value": pais} for pais in df['Country'].unique()]
+# Filtragem dos dados para usar no dropdown
+df_filtered = []
+for index, row in enumerate(df):
+    if row["Country"] != None:
+        df_filtered.append(row)
+## Verifica os países que estão no dataset e remove os que são nulos
+
+paises = set()
+for index, row in df_filtered.iterrows():
+    paises.add(row['Country'])
+
+optionsCountry = [{"label": pais, "value": pais} for pais in paises]
+## Verifica e impede a duplicação de países no dropdown
 
 # Layout do dashboard com o dropdown para selecionar o país
 app.layout = html.Div([
@@ -45,7 +55,10 @@ app.layout = html.Div([
 def update_figure(pais):
     ## Pega os dados para usar nos eixos do gráfico
     anos = ['2015', '2016', '2017', '2018', '2019']
-    rankings = df[df['Country'] == pais]['Happiness Rank']
+    rankings = []
+    for index, row in df.iterrows():
+        if row['Country'] == pais:
+            rankings.append(row['Happiness Rank'])
 
     ## Montagem do gráfico
     fig = px.line(x= anos, y= rankings, title=f'Variação da Posição do(a) {pais} no Ranking da Felicidade', template='plotly_white')
