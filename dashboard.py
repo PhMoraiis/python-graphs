@@ -15,7 +15,7 @@ dispersao_graph = pd.read_csv('C:\ProjetosVSCode\Python\Test\data\ThiagoData.csv
 app = dash.Dash(__name__, external_stylesheets=['https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap'])
 
 
-# GRAFICO CAMILA E PHILIPE
+# GRAFICO 1
 
 # Filtragem dos dados para usar no dropdown da VARIAÇÃO DA POSIÇÃO
 position_var = position_var[position_var["Country"].notnull()]
@@ -51,7 +51,7 @@ def update_figure(pais):
   return fig
 
 
-# GRÁFICO CRISTIANO
+# GRÁFICO 2
 
 # Alocação de dados nas variáveis a serem utilizadas posteriormente para o cálculo do percentual
 rank_pais = percentual_graph['Country or region']
@@ -105,7 +105,7 @@ def muda_grafico(value):
 
 # Geração do gráfico
 
-# GRÁFICO BRUNO
+# GRÁFICO 3
 
 def gera_media_continente(variavel, visualizacao):
   #Função que separa a pontuação dos países em listas com base no continente ao qual fazem parte.
@@ -199,7 +199,7 @@ def altera_grafico(variavel, visualizacao):
   return fig
 
 
-## GRAFICO THIAGO
+## GRAFICO 4
 #Cria nova lista vazia para implementação dos novos valores
 score = dispersao_graph['Score']
 support = dispersao_graph['Social support']
