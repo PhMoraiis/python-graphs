@@ -46,7 +46,7 @@ def update_figure(pais):
   fig.update_yaxes(title='Posições no Ranking')
   fig.update_xaxes(title='Anos')
   fig.update_layout(font_family='Poppins', font_color='#666', title_font_family='Poppins', title_font_color='#666', title_font_size=20, title_x=0.5, title_y=0.95, title_xanchor='center', title_yanchor='top',
-  paper_bgcolor='#F5F5F5', plot_bgcolor='#c8c8c8')
+  paper_bgcolor='#FFF', plot_bgcolor='#c8c8c8')
 
   return fig
 
@@ -70,15 +70,15 @@ def calculo(variaveis):
   recebe = ''
   if variaveis == 'Renda':
     recebe = renda
-  if variaveis == 'Suporte social':
+  elif variaveis == 'Suporte social':
     recebe = suporte_social
-  if variaveis == 'Saúde':
+  elif variaveis == 'Saúde':
     recebe = saude
-  if variaveis == 'Liberdade':
+  elif variaveis == 'Liberdade':
     recebe = liberdade
-  if variaveis == 'Generosidade':
+  elif variaveis == 'Generosidade':
     recebe = generosidade
-  if variaveis == 'Corrupção':
+  elif variaveis == 'Corrupção':
     recebe = corrupcao
   
   razao = []
@@ -90,7 +90,7 @@ def calculo(variaveis):
   fig.update_traces(name=f'{variaveis}', mode='lines+markers', line=dict(color='#3EECAC', width=3), marker=dict(color='#EE74E1', size=10))
   fig.update_yaxes(title = 'Percentual',showgrid= False)
   fig.update_xaxes(title = 'País/Região',showgrid= True)
-  fig.update_layout(font_family='Poppins', font_color='#666', title_font_family='Poppins', title_font_color='#666', title_font_size=20, title_x=0.5, title_y=0.95, title_xanchor='center', title_yanchor='top', paper_bgcolor='#F5F5F5', plot_bgcolor='#c8c8c8')
+  fig.update_layout(font_family='Poppins', font_color='#666', title_font_family='Poppins', title_font_color='#666', title_font_size=20, title_x=0.5, title_y=0.95, title_xanchor='center', title_yanchor='top', paper_bgcolor='#FFF', plot_bgcolor='#c8c8c8')
 
   return fig
 
@@ -177,7 +177,7 @@ def gera_media_continente(variavel, visualizacao):
   #Gerando o gráfico em formato de pizza.
   fig2 = px.pie(
     names = ['Europe', 'North - America', 'South - America', 'Asia', 'Africa', 'Oceania'], 
-    values = media_continentes
+    values = media_continentes,
   )
 
   #Retorno do gráfico com base na opção de visualização escolhida pelo usuário
@@ -225,6 +225,7 @@ lista_Oce = criar_listas(score, support,continente,'Oceania')
 novo_dataframe = pd.DataFrame(lista_Eu, columns= ["Score","Suporte Social"])
 
 fig = px.scatter(data_frame = novo_dataframe, x ="Score", y = "Suporte Social")
+
 
 @app.callback(
     dash.dependencies.Output('dispersao-graph','figure'),
@@ -346,8 +347,8 @@ app.layout = html.Section([
         id='dispersao-graph',
         figure=fig,
     ),
-  ], style={'background': '#F5F5F5'})
-], style={'background': '#F5F5F5'})
+  ], style={'background': '#FFF'})
+], style={'background': '#FFF'})
 
 # Executa o dashboard
 if __name__ == '__main__':
